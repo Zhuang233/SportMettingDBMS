@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zbw.mapper.StudentMapper">
+    <insert id="InsertStudent" parameterType="com.zbw.pojo.Student">
+        insert into student values(#{studentno},#{name},#{gender},#{age},#{deptno},#{coachno},#{grade})
+    </insert>
+
+    <select id="SelectAllStudent" resultType="com.zbw.pojo.Student">
+        select * from student
+    </select>
+</mapper>
