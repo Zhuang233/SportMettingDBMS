@@ -7,7 +7,41 @@
         insert into student values(#{studentno},#{name},#{gender},#{age},#{deptno},#{coachno},#{grade})
     </insert>
 
+<!--    查询所有学生-->
     <select id="SelectAllStudent" resultType="com.zbw.pojo.Student">
         select * from student
     </select>
+
+<!--    按关键字查询学生-->
+    <select id="SelectStudentByKeyword" resultType="com.zbw.pojo.Student" parameterType="com.zbw.pojo.Student">
+        select * from student
+        where 1=1
+        <if test="name != null and name != '' ">
+            and name like concat(concat('%',#{name}),'%')
+        </if>
+        <if test="studentno != null">
+            and studentno = #{studentno}
+        </if>
+        <if test="gender != null">
+            and gender = #{gender}
+        </if>
+        <if test="age != null">
+            and age = #{age}
+        </if>
+        <if test="deptno != null">
+            and deptno  = #{deptno}
+        </if>
+        <if test="coachno != null">
+            and coachno = #{coachno}
+        </if>
+        <if test="grade != null">
+            and grade = #{grade}
+        </if>
+    </select>
+    
+    <delete id="DeleteStudent" parameterType="int">
+        delete from student
+        where studentno = #{studentno}
+    </delete>
+
 </mapper>
