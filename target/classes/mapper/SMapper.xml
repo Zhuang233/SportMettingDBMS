@@ -3,6 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zbw.mapper.StudentMapper">
+
+<!--    插入学生-->
     <insert id="InsertStudent" parameterType="com.zbw.pojo.Student">
         insert into student values(#{studentno},#{name},#{gender},#{age},#{deptno},#{coachno},#{grade})
     </insert>
@@ -38,10 +40,37 @@
             and grade = #{grade}
         </if>
     </select>
-    
+
+<!--    删除学生-->
     <delete id="DeleteStudent" parameterType="int">
         delete from student
         where studentno = #{studentno}
     </delete>
 
+<!--修改学生信息-->
+    <update id="UpdateStudent" parameterType="com.zbw.pojo.Student">
+        update student
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="age != null">
+                age = #{age},
+            </if>
+            <if test="deptno != null">
+                deptno  = #{deptno},
+            </if>
+            <if test="coachno != null">
+                coachno = #{coachno},
+            </if>
+            <if test="grade != null">
+                grade = #{grade},
+            </if>
+            studentno = #{studentno}
+        </set>
+        where studentno = #{studentno}
+    </update>
 </mapper>

@@ -44,4 +44,9 @@ public class StudentController {
     public int DeleteStudent(@RequestParam("studentno") Integer sno){
         return studentMapper.DeleteStudent(sno);
     }
+
+    @GetMapping("/updateStudent")
+    public int UpdateStudent(Student s){
+        return studentMapper.UpdateStudent(s);
+    }
 }
