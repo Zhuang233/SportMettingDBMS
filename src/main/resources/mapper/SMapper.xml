@@ -5,8 +5,56 @@
 <mapper namespace="com.zbw.mapper.StudentMapper">
 
 <!--    插入学生-->
+    <sql id="key">
+        <trim suffixOverrides=",">
+            studentno,
+            <if test="name!=null and name!=''">
+                name,
+            </if>
+            <if test="gender!=null and gender!=''">
+                gender,
+            </if>
+            <if test="age!=null and age!=''">
+                age,
+            </if>
+            <if test="deptno!=null and deptno!=''">
+                deptno,
+            </if>
+            <if test="coachno!=null and coachno!=''">
+                coachno,
+            </if>
+            <if test="grade!=null and grade!=''">
+                grade,
+            </if>
+        </trim>
+    </sql>
+    
+    <sql id="values">
+        <trim suffixOverrides=",">
+            #{studentno},
+            <if test="name!=null and name!=''">
+                #{name},
+            </if>
+            <if test="gender!=null and gender!=''">
+                #{gender},
+            </if>
+            <if test="age!=null and age!=''">
+                #{age},
+            </if>
+            <if test="deptno!=null and deptno!=''">
+                #{deptno},
+            </if>
+            <if test="coachno!=null and coachno!=''">
+                #{coachno},
+            </if>
+            <if test="grade!=null and grade!=''">
+                #{grade},
+            </if>
+        </trim>
+    </sql>
+
     <insert id="InsertStudent" parameterType="com.zbw.pojo.Student">
-        insert into student values(#{studentno},#{name},#{gender},#{age},#{deptno},#{coachno},#{grade})
+        insert into student(<include refid="key"> </include>) values(<include refid="values"> </include>)
     </insert>
 
 <!--    查询所有学生-->
